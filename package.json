@@ -1,0 +1,24 @@
+{
+  "name": "evergarden-backend",
+  "version": "1.0.0",
+  "description": "Proyecto Ever Garden - Repositorio para el Backend",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andyska/EverGarden-Backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andyska/EverGarden-Backend/issues"
+  },
+  "homepage": "https://github.com/andyska/EverGarden-Backend#readme"
+}
