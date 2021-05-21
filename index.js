@@ -3,9 +3,9 @@ const express = require('express')
 
 //convoco a la base de datos
 const mongoose = require('mongoose')
-/*const Book = require('./models/bookmodel.js')
+const Product = require('./models/productmodel.js')
 const User = require('./models/usermodel.js')
-const bookRouter = require('./routes/bookRouter.js')(Book) // con estos parentesis ejecuto la funcion que viene del require
+/*const bookRouter = require('./routes/bookRouter.js')(Book) // con estos parentesis ejecuto la funcion que viene del require
 const userRouter = require('./routes/userRouter.js')(User)
 const jwt = require('express-jwt')
 */
