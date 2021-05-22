@@ -6,9 +6,9 @@ const mongoose = require('mongoose')
 const Product = require('./models/productModel.js')
 const User = require('./models/userModel.js')
 const productRouter = require('./routes/productRouter.js')(Product) // con estos parentesis ejecuto la funcion que viene del require
-/*const userRouter = require('./routes/userRouter.js')(User)
-const jwt = require('express-jwt')
-*/
+const userRouter = require('./routes/userRouter.js')(User)
+//const jwt = require('express-jwt')
+
 //ejecuto express como si fuera una funcion
 const app = express()
 
@@ -17,9 +17,9 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
-//app.all('/api/*', jwt( {secret:'Indio10072017', algorithms:['HS256'] } ).unless({path: ['/api/users/login']}))
+//app.all('/api/*', jwt( {secret:'EverGarden2021', algorithms:['HS256'] } ).unless({path: ['/api/users/login']}))
 app.use('/api', productRouter)
-//app.use('/api', userRouter)
+app.use('/api', userRouter)
 
 //me conecto a mongo
 const connectDB = async () => {
