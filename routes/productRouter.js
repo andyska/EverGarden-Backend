@@ -19,7 +19,7 @@ const routes = (Product) => {
   productRouter.route('/products/:productId')
   
   .get(controller.getProductById)
-  //.put(controller.putProductById)
+  .put(controller.putProductById)
   .delete(controller.deleteProductById)
 
   /*

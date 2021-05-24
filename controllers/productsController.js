@@ -35,7 +35,6 @@ const productsController = (Product) => {
       try {
         const {params} = req
         const response = await Product.findById(params.productId)
-        console.log("responseById:", response)
         if(response == null){
           return res.json({message: "No matches found"})
         }
@@ -49,20 +48,25 @@ const productsController = (Product) => {
         throw err
       }
     }
-  /*
-    const putBookById = async(req,res) => {
+  
+    const putProductById = async(req,res) => {
       try {
           const {params,body} = req
-          const response = await Book.updateOne({
-            _id: params.bookId
+          const response = await Product.updateOne({
+            _id: params.productId
           }, {
             $set: {
-              title: body.title,
-              genre: body.genre,
-              author: body.author,
-              read:  body.read
+              product:body.product,
+              brand :body.brand,
+              category :body.category,
+              description: body.description,
+              dimensions: body.dimensions,
+              use: body.use,
+              photo_url:body.photo_url,
+              price: body.price
             }
-          })
+          }
+          )
         return res.status(202).json(response)
       }
       catch (err){
@@ -71,7 +75,7 @@ const productsController = (Product) => {
       throw err
       }
     }
-  */
+  
     const deleteProductById = async(req,res)=>{
        try{
       const {params} = req
@@ -85,7 +89,7 @@ const productsController = (Product) => {
       }
     }
     
-  return {getProducts, postProducts, getProductById, deleteProductById}  // despues acordarme de agregar los demas contoladores en el return: getBookByID, putBookById,deleteBookById
+  return {getProducts, postProducts, getProductById,putProductById, deleteProductById}  // despues acordarme de agregar los demas contoladores en el return: getBookByID, putBookById,deleteBookById
   }
   
   module.exports = productsController
