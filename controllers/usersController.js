@@ -107,18 +107,27 @@ const usersController = (User) => {
   const putUser = async (req,res)=> {
       try {
       const {params, body} = req
+      const newUserName = () => {
+        if (body.lastName && body.firstName ) { 
+          //solo tomo el primer nombre o apellido ingresado
+          const splitFirstName = body.firstName.split(" ")
+          const splitLastName = body.lastName.split(" ")
+          const newusername = splitLastName[0].toUpperCase() + "-"+ splitFirstName[0] 
+          return (newusername)
+        }
+      }
+      const newpassword = await  bcrypt.hash(body.password, 10) 
+
       const response = await User.updateOne({
           _id: params.userId 
       }, {
           $set: {
-              firstName: body.firstName,
-              lastName: body.lastName,
-              userName: body.userName,
-              password: body.password,
-              email: body.email,
-              type: body.type
+                ...body,
+                userName: newUserName(),
+                password: newpassword
+      }
           }
-      })
+      )
       if(response && response !== null) {
         return res.status(202).json(response)
       }
