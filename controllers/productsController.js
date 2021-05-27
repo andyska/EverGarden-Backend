@@ -89,7 +89,7 @@ const productsController = (Product) => {
       }
     }
     
-  return {getProducts, postProducts, getProductById,putProductById, deleteProductById}  // despues acordarme de agregar los demas contoladores en el return: getBookByID, putBookById,deleteBookById
+  return {getProducts, postProducts, getProductById,putProductById, deleteProductById}  
   }
   
   module.exports = productsController
