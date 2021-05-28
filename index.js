@@ -7,7 +7,7 @@ const Product = require('./models/productModel.js')
 const User = require('./models/userModel.js')
 const productRouter = require('./routes/productRouter.js')(Product) // con estos parentesis ejecuto la funcion que viene del require
 const userRouter = require('./routes/userRouter.js')(User)
-//const jwt = require('express-jwt')
+const jwt = require('express-jwt')
 
 //ejecuto express como si fuera una funcion
 const app = express()
