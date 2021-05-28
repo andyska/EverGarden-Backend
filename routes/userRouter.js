@@ -1,9 +1,8 @@
 //archivo especifico para que maneje los endpoints de usuarios
 const express = require('express')
 const usersController = require('../controllers/usersController')
-//const validation = require('express-joi-validation').createValidator()
-//const usersValidations = require('../validations/usersvalidations.js')
-
+const validator = require ('express-joi-validation').createValidator()
+const usersValidation = require ('../validations/usersValidations')
 
 const routes = (User)=>{
     const userRouter = express.Router()
@@ -11,32 +10,32 @@ const routes = (User)=>{
 
     userRouter.route('/users')
       .get(
-        //validation.query(usersValidations.querySchema), 
+        validator.query(usersValidation.usersValidationQuery), 
         controller.getUsers
       ) 
       .post(
-      //  validation.body(usersValidations.bodySchema), 
+        validator.body(usersValidation.usersValidationBody), 
         controller.postUser
       )
 
     userRouter.route('/users/:userId')
       .get(
-       // validation.params(usersValidations.paramsSchema), 
+        validator.params(usersValidation.usersValidationParams), 
         controller.getUserById
-      ) 
+      )
       .put(
-       // validation.params(usersValidations.paramsSchema), 
-       // validation.body(usersValidations.bodySchema), 
+        validator.params(usersValidation.usersValidationParams), 
+        validator.body(usersValidation.usersValidationPut), 
         controller.putUser
       )
       .delete(
-       // validation.params(usersValidations.paramsSchema), 
+        validator.params(usersValidation.usersValidationParams), 
         controller.deleteUser
       )
         
     userRouter.route('/users/login')
       .post(
-      //  validation.body(usersValidations.loginSchema),
+        validator.body(usersValidation.usersValidationLogin),
         controller.postUserLogin
       )
      
