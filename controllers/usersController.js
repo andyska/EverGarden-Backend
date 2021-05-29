@@ -67,10 +67,10 @@ const usersController = (User) => {
         if (isPasswordCorrect) {
           return  res.status(201).json({message: 'Valid User',  token: createToken (foundUser) })
         } else {
-          return  res.status(404).json({message: 'Invalid Password'})
+          return  res.status(400).json({message: 'Invalid Password'})
         }
       } else {
-        return  res.status(404).json({message: 'Invalid User'})
+        return  res.status(400).json({message: 'Invalid User'})
       }
     } catch (error) {
       console.log('postUserLogin error:' + error)
