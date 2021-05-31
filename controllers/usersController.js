@@ -86,7 +86,7 @@ const usersController = (User) => {
       email: user.email,
       type: user.type
     } 
-    return  jwt.sign(tokenUser, 'EverGarden2021', { expiresIn: 20 })
+    return  jwt.sign(tokenUser, 'secret') //, { expiresIn: 20 })
   }
 
   const getUserById = async (req,res)=> {
