@@ -12,8 +12,8 @@ const checkToken = async (req, res, next) =>{
         return res.status(403).json({message:'No token'})}
  
         const decoded = jwt.verify(token, 'secret')
-        console.log('decoded.id', decoded.id ) 
-        req.userId = decoded.id 
+        //console.log('decoded.id', decoded.id ) 
+       /// req.userId = decoded.id 
         
     
    /*  const user = await User.findById( req.userId)

@@ -17,6 +17,8 @@ const routes = (Product) => {
   .put(checkToken,validator.params(productsValidation.productsValidationParams),validator.body(productsValidation.productsValidationPut),controller.putProductById)
   .delete(checkToken,validator.params(productsValidation.productsValidationParams), controller.deleteProductById)
 
+  productRouter.route('/products')
+    .get (validator.query(productsValidation.productsValidationQuery),controller.getProducts)    
   return productRouter
 }
 
