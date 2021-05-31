@@ -3,32 +3,33 @@ const express = require('express')
 const usersController = require('../controllers/usersController')
 const validator = require ('express-joi-validation').createValidator()
 const usersValidation = require ('../validations/usersValidations')
+const checkToken = require ('../checkToken')
 
 const routes = (User)=>{
     const userRouter = express.Router()
     const controller = usersController(User)
 
     userRouter.route('/admin/users')
-      .get(
+      .get(checkToken,
         validator.query(usersValidation.usersValidationQuery), 
         controller.getUsers
       ) 
-      .post(
+      .post(checkToken,
         validator.body(usersValidation.usersValidationBody), 
         controller.postUser
       )
 
     userRouter.route('/admin/users/:userId')
-      .get(
+      .get(checkToken,
         validator.params(usersValidation.usersValidationParams), 
         controller.getUserById
       )
-      .put(
+      .put(checkToken,
         validator.params(usersValidation.usersValidationParams), 
         validator.body(usersValidation.usersValidationPut), 
         controller.putUser
       )
-      .delete(
+      .delete(checkToken,
         validator.params(usersValidation.usersValidationParams), 
         controller.deleteUser
       )

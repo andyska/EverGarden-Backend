@@ -64,8 +64,12 @@ const usersController = (User) => {
       const foundUser = await User.findOne ({"userName": userName})
       if (foundUser ) {// && passwordValidation(foundUser, password) ) {
         const isPasswordCorrect = await  bcrypt.compare( password , foundUser.password)
-        if (isPasswordCorrect) {
+        if (isPasswordCorrect) { //&& foundUser.type == 'admin') {
+          if (foundUser.type == 'admin'){
           return  res.status(201).json({message: 'Valid User',  token: createToken (foundUser) })
+          } else {
+            res.status(201).json({message: 'Valid User - No credentials for visitors'})
+          }
         } else {
           return  res.status(400).json({message: 'Invalid Password'})
         }
@@ -86,7 +90,7 @@ const usersController = (User) => {
       email: user.email,
       type: user.type
     } 
-    return  jwt.sign(tokenUser, 'EverGarden2021', { expiresIn: 20 })
+    return  jwt.sign(tokenUser, 'secret') //, { expiresIn: 20 })
   }
 
   const getUserById = async (req,res)=> {
