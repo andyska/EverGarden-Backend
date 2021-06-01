@@ -8,11 +8,20 @@ const User = require('./models/userModel.js')
 const productRouter = require('./routes/productRouter.js')(Product) // con estos parentesis ejecuto la funcion que viene del require
 const userRouter = require('./routes/userRouter.js')(User)
 const jwt = require('express-jwt')
+const cors = require('cors')
 
 //ejecuto express como si fuera una funcion
 const app = express()
-
 const bodyParser = require('body-parser')
+
+app.use(cors())
+app.get('api/users/:id', function(req,res,next){
+  res.json({msg:'this is cors-enabled for all origins'})
+})
+
+app.listen(8082, function(){
+  console.log('cors-enabled web server listening on port 8082')
+})
 //estas dos lineas me permiten formatear de cierta manera lo que envio
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
