@@ -10,7 +10,7 @@ const checkToken = async (req, res, next) =>{
     if (!token) {
         return res.status(403).json({message:'No token'})}
  
-        const decoded = jwt.verify(token, 'secret')
+        const decoded = jwt.verify(token, 'EverGarden2021')
     
         next()
     }

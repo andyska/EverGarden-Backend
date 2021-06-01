@@ -17,7 +17,7 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
-app.all('/api/admin/', jwt( {secret:'secret', algorithms:['HS256'] } ).unless({path: ['/api/admin/users/login']})) 
+app.all('/api/admin/', jwt( {secret:'EverGarden2021', algorithms:['HS256'] } ).unless({path: ['/api/admin/users/login']})) 
 app.use('/api', productRouter)
 app.use('/api', userRouter)
 
